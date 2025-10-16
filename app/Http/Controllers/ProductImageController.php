@@ -53,7 +53,7 @@ class ProductImageController extends ApiController
                         ->update(['position' => 'gallery']);
                 }
 
-                $image = $image->store('images', 'public');
+                $image = $image->store('product_images', 'public');
                 array_push($uploadedPaths, $image);
 
                 $product->images()->create([
@@ -121,7 +121,7 @@ class ProductImageController extends ApiController
 
             if ($validated['image'] ?? null) {
                 Storage::disk('public')->delete($productImage->image);
-                $newPath = $validated['image']->store('images', 'public');
+                $newPath = $validated['image']->store('product_images', 'public');
                 array_push($uploadedPaths, $newPath);
             }
 
