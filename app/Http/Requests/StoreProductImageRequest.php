@@ -24,11 +24,11 @@ class StoreProductImageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'images'   => 'required|array', /// images
-            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',  /// images.*
-            'positions'     => "required_with:images|array|size:" . count($this->images),
-            'positions.*'   => ['required', new Enum(ProductImagePositionEnum::class)], /// positions.*
-            'include' => $this->includeRule(ProductImageRelationEnum::values()),
+            'images'      => 'required|array', /// images
+            'images.*'    => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',  /// images.*
+            'positions'   => "required_with:images|array|size:" . count($this->images),
+            'positions.*' => ['required', new Enum(ProductImagePositionEnum::class)], /// positions.*
+            'include'     => $this->includeRule(ProductImageRelationEnum::values()),
         ];
     }
 }

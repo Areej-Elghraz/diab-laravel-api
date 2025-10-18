@@ -60,7 +60,7 @@ Route::middleware(['auth:sanctum', 'verified', 'authorized', 'ability:' . TokenA
         Route::get('products/trashed/{id}', 'showTrashed')
             ->whereNumber('id')
             ->name('show-trashed');
-        Route::post('products/restore/{id}', 'restore')
+        Route::put('products/restore/{id}', 'restore')
             ->whereNumber('id')
             ->name('restore');
         Route::delete('products/force-delete/{id}', 'forceDelete')

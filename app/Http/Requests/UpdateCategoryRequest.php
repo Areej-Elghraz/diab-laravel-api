@@ -22,7 +22,7 @@ class UpdateCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'sometimes|nullable|string|max:100|unique:categories,name,' . $this->id,
+            'name'    => 'sometimes|nullable|string|max:100|unique:categories,name,' . $this->id,
             'include' => $this->includeRule(CategoryRelationEnum::values()),
         ];
     }

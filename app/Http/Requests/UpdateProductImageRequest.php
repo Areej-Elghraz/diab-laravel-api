@@ -24,9 +24,9 @@ class UpdateProductImageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image'  => 'sometimes|nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', /// images
+            'image'    => 'sometimes|nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', /// images
             'position' => ['sometimes', 'required_with:image', new Enum(ProductImagePositionEnum::class)], /// positions.*
-            'include' => $this->includeRule(ProductImageRelationEnum::values()),
+            'include'  => $this->includeRule(ProductImageRelationEnum::values()),
         ];
     }
 }

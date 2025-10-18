@@ -22,8 +22,8 @@ class CategoryIncludeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'per_page'    => 'sometimes|nullable|integer|min:1',
-            'include' => $this->includeRule(CategoryRelationEnum::values()),
+            'per_page' => 'sometimes|nullable|integer|min:1',
+            'include'  => $this->includeRule(CategoryRelationEnum::values()),
         ];
     }
 }

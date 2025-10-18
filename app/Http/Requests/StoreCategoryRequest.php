@@ -22,7 +22,7 @@ class StoreCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:100|unique:categories,name',
+            'name'    => 'required|string|max:100|unique:categories,name',
             'include' => $this->includeRule(CategoryRelationEnum::values()),
         ];
     }

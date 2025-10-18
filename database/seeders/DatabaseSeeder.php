@@ -29,14 +29,14 @@ class DatabaseSeeder extends Seeder
             'role'              => 'admin',
         ]);
 
-        // Category::factory(10)->create();
-        // Banner::factory(7)->create();
-        // Product::factory(30)->create()->each(function ($product) {
-        //     ProductImage::factory(3)->create([
-        //         'product_id' => $product->id,
-        //     ]);
-        // });
-        // PhoneNumber::factory(15)->create();
-        // SocialLink::factory(5)->create();
+        Category::factory(10)->create();
+        Banner::factory(7)->create();
+        Product::factory(30)->create()->each(function ($product) {
+            ProductImage::factory(3)->create([
+                'product_id' => $product->id,
+            ]);
+        });
+        PhoneNumber::factory(15)->create();
+        SocialLink::factory(5)->create();
     }
 }

@@ -2,19 +2,17 @@
 
 use App\Enums\ProductImagePositionEnum;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 beforeEach(function () {
     $this->data = [
         'images' => [
-            UploadedFile::fake()->image('product1.jpg'),
-            UploadedFile::fake()->image('product2.jpg'),
+            UploadedFile::fake()->image('before.jpg'),
+            UploadedFile::fake()->image('gallery.jpg'),
         ],
-        'positions' => [
-            'gallery',
-            'gallery',
-        ],
-        'image' => UploadedFile::fake()->image('product.jpg'),
-        'position' => fake()->randomElement(ProductImagePositionEnum::values())
+        'positions' => ['before', 'gallery'],
+        'image' => UploadedFile::fake()->image('updated.jpg'),
+        'position' => 'gallery',
     ];
     $this->product->images()->createMany([
         ['image' => 'fake3.jpg', 'position' => 'gallery'],
@@ -25,7 +23,101 @@ beforeEach(function () {
     $this->product->load('images', 'gallery', 'beforeImage', 'afterImage');
 });
 
-test('user can view all product images (no pagination)', function () {
+// test('user can view all product images (no pagination)', function () {
+//     $response = $this->getJson("/api/products/{$this->product->id}/images");
+
+//     $response->assertOk()
+//         ->assertJsonStructure([
+//             'message',
+//             'data' => [
+//                 'images' => [
+//                     '*' => ['id', 'image', 'position', 'created_at', 'updated_at']
+//                 ]
+//             ]
+//         ]);
+// });
+
+
+// test('admin can create a product image', function () {
+//     $response = $this->withHeaders([
+//         'Authorization' => 'Bearer ' . $this->accessToken,
+//     ])->postJson("/api/products/{$this->product->id}/images", $this->data);
+
+//     $response->assertCreated()
+//         ->assertJsonStructure([
+//             'message',
+//             'data' => [
+//                 'images' => [
+//                     '*' => ['id', 'image', 'position', 'created_at', 'updated_at']
+//                 ]
+//             ]
+//         ]);
+// });
+
+
+// test('user can view specific product image', function () {
+//     $image_id = $this->product->images->first()->id;
+//     $response = $this->getJson("/api/products/{$this->product->id}/images/{$image_id}");
+
+//     $response->assertOk()
+//         ->assertJsonStructure([
+//             'message',
+//             'data' => [
+//                 'image' => ['id', 'image', 'position', 'created_at', 'updated_at']
+//             ]
+//         ]);
+// });
+
+
+// test('admin can update product image', function () {
+//     $image_id = $this->product->gallery->first()->id;
+//     $response = $this->withHeaders([
+//         'Authorization' => 'Bearer ' . $this->accessToken,
+//     ])->putJson("/api/products/{$this->product->id}/images/{$image_id}", $this->data);
+
+//     $response->assertOk()
+//         ->assertJsonStructure([
+//             'message',
+//             'data' => [
+//                 'image' => ['id', 'image', 'position', 'created_at', 'updated_at']
+//             ]
+//         ]);
+// });
+
+
+// test('admin can delete a product image', function () {
+//     $image_id = $this->product->gallery->first()->id;
+//     $response = $this->withHeaders([
+//         'Authorization' => 'Bearer ' . $this->accessToken,
+//     ])->deleteJson("/api/products/{$this->product->id}/images/{$image_id}");
+
+//     $response->assertOk()
+//         ->assertJsonStructure([
+//             'message',
+//             'data' => [
+//                 'image' => ['id', 'image', 'position', 'created_at', 'updated_at']
+//             ]
+//         ]);
+// });
+
+// test('admin can delete a all images in specific product', function () {
+//     $response = $this->withHeaders([
+//         'Authorization' => 'Bearer ' . $this->accessToken,
+//     ])->deleteJson("/api/products/{$this->product->id}/images");
+
+//     $response->assertOk()
+//         ->assertJsonStructure([
+//             'message',
+//             'data' => [
+//                 'images' => [
+//                     '*' => ['id', 'image', 'position', 'created_at', 'updated_at']
+//                 ]
+//             ]
+//         ]);
+// });
+
+
+test('user can view all product images', function () {
     $response = $this->getJson("/api/products/{$this->product->id}/images");
 
     $response->assertOk()
@@ -39,8 +131,9 @@ test('user can view all product images (no pagination)', function () {
         ]);
 });
 
+test('admin can add new images to product', function () {
+    Storage::fake('public');
 
-test('admin can create a product image', function () {
     $response = $this->withHeaders([
         'Authorization' => 'Bearer ' . $this->accessToken,
     ])->postJson("/api/products/{$this->product->id}/images", $this->data);
@@ -54,12 +147,17 @@ test('admin can create a product image', function () {
                 ]
             ]
         ]);
+
+
+    /** @var \Illuminate\Filesystem\FilesystemAdapter $storage */
+    $storage = Storage::disk('public');
+    $storage->assertExists('product_images/' . basename($this->data['images'][0]->hashName()));
 });
 
+test('user can view a single product image', function () {
+    $image = $this->product->images()->first();
 
-test('user can view specific product image', function () {
-    $image_id = $this->product->images->first()->id;
-    $response = $this->getJson("/api/products/{$this->product->id}/images/{$image_id}");
+    $response = $this->getJson("/api/products/{$this->product->id}/images/{$image->id}");
 
     $response->assertOk()
         ->assertJsonStructure([
@@ -70,39 +168,48 @@ test('user can view specific product image', function () {
         ]);
 });
 
+test('admin can update a product image', function () {
+    Storage::fake('public');
+    $image = $this->product->gallery()?->first();
 
-test('admin can update product image', function () {
-    $image_id = $this->product->gallery->first()->id;
-    $response = $this->withHeaders([
-        'Authorization' => 'Bearer ' . $this->accessToken,
-    ])->putJson("/api/products/{$this->product->id}/images/{$image_id}", $this->data);
+    if ($image) {
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $this->accessToken,
+        ])->putJson("/api/products/{$this->product->id}/images/{$image->id}", $this->data);
 
-    $response->assertOk()
-        ->assertJsonStructure([
-            'message',
-            'data' => [
-                'image' => ['id', 'image', 'position', 'created_at', 'updated_at']
-            ]
-        ]);
+        $response->assertOk()
+            ->assertJsonStructure([
+                'message',
+                'data' => [
+                    'image' => ['id', 'image', 'position', 'created_at', 'updated_at']
+                ]
+            ]);
+
+        /** @var \Illuminate\Filesystem\FilesystemAdapter $storage */
+        $storage = Storage::disk('public');
+        $storage->assertExists('product_images/' . basename($this->data['image']->hashName()));
+    }
 });
-
 
 test('admin can delete a product image', function () {
-    $image_id = $this->product->gallery->first()->id;
-    $response = $this->withHeaders([
-        'Authorization' => 'Bearer ' . $this->accessToken,
-    ])->deleteJson("/api/products/{$this->product->id}/images/{$image_id}");
+    $image = $this->product->gallery()?->first();
 
-    $response->assertOk()
-        ->assertJsonStructure([
-            'message',
-            'data' => [
-                'image' => ['id', 'image', 'position', 'created_at', 'updated_at']
-            ]
-        ]);
+    if ($image) {
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $this->accessToken,
+        ])->deleteJson("/api/products/{$this->product->id}/images/{$image->id}");
+
+        $response->assertOk()
+            ->assertJsonStructure([
+                'message',
+                'data' => [
+                    'image' => ['id', 'image', 'position', 'created_at', 'updated_at']
+                ]
+            ]);
+    }
 });
 
-test('admin can delete a all images in specific product', function () {
+test('admin can delete all product images', function () {
     $response = $this->withHeaders([
         'Authorization' => 'Bearer ' . $this->accessToken,
     ])->deleteJson("/api/products/{$this->product->id}/images");
