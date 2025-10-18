@@ -1,69 +1,70 @@
 import random
 import math
 
-# create data as array
+class KMeans:
+    def __init__(self, k=3, max_iter=100, tolerance=1e-4, random_state=42):
+        self.k = k
+        self.max_iter = max_iter
+        self.tolerance = tolerance
+        self.random_state = random_state
+        self.centroids = []
+
+    def euclidean_distance(self, p1, p2):
+        return math.sqrt(sum((a - b) ** 2 for a, b in zip(p1, p2)))
+
+    def compute_centroid(self, points):
+        n = len(points)
+        if n == 0:
+            return [0] * len(self.centroids[0])
+        return [sum(dim) / n for dim in zip(*points)]
+
+    def fit(self, data):
+        random.seed(self.random_state)
+        self.centroids = random.sample(data, self.k)
+        
+        for iteration in range(self.max_iter):
+            clusters = [[] for _ in range(self.k)]
+            
+            # Assign each point to nearest centroid
+            for point in data:
+                distances = [self.euclidean_distance(point, c) for c in self.centroids]
+                cluster_idx = distances.index(min(distances))
+                clusters[cluster_idx].append(point)
+
+            # Update centroids
+            new_centroids = [self.compute_centroid(cluster) for cluster in clusters]
+            
+            # Compute shift
+            shift = sum(self.euclidean_distance(old, new) for old, new in zip(self.centroids, new_centroids))
+            print(f"Iteration {iteration + 1}: centroid shift = {shift:.6f}")
+
+            if shift < self.tolerance:
+                print("Converged!\n")
+                break
+            self.centroids = new_centroids
+
+        self.clusters = clusters
+
+    def predict(self, points):
+        """Assign new points to nearest centroid"""
+        return [
+            min(range(self.k), key=lambda i: self.euclidean_distance(point, self.centroids[i]))
+            for point in points
+        ]
+
+    def print_results(self):
+        print("Final Centroids:")
+        for i, c in enumerate(self.centroids):
+            print(f"  Cluster {i+1}: {c}")
+        print("\nCluster Assignments:")
+        for i, cluster in enumerate(self.clusters):
+            print(f"  Cluster {i+1}: {cluster}")
+
+# Example usage:
 data = [
-    [1.0, 2.0],
-    [1.2, 1.8],
-    [0.8, 2.2],
-    [8.0, 8.5],
-    [7.9, 8.0],
-    [8.2, 7.8],
-    [3.0, 3.5],
-    [3.2, 3.0]
+    [1.0, 2.0], [1.2, 1.8], [0.8, 2.2], [8.0, 8.5], [7.9, 8.0], [8.2, 7.8], [3.0, 3.5], [3.2, 3.0]
 ]
 
-n_features = len(data[0])
-
-# initialize Parameters
-k = 3  # number of clusters
-max_iter = 100
-tolerance = 0.0001
-
-# random centriods
-random.seed(42)
-centroids = random.sample(data, k)
-
-def euclidean_distance(p1, p2, dim):
-    """Compute Euclidean distance between two points."""
-    return math.sqrt(sum((p1[i] - p2[i]) ** 2 for i in range(dim)))
-
-def mean_point(points, n_features):
-    """Compute mean point (centroid) of a list of points."""
-    n = len(points)
-    if n == 0:
-        return [0 for i in range(n_features)]
-    dims = len(points[0])
-    mean = []
-    for i in range(dims):
-        avg = sum(p[i] for p in points) / n
-        mean.append(avg)
-    return mean
-
-for iteration in range(max_iter):
-    
-    clusters = [[] for _ in range(k)]
-    for point in data:
-        distances = [euclidean_distance(point, centroid, n_features) for centroid in centroids]
-        nearest = distances.index(min(distances))
-        clusters[nearest].append(point)
-    
-    new_centroids = [mean_point(cluster, n_features) for cluster in clusters]
-    
-    shift = sum(euclidean_distance(centroids[i], new_centroids[i], n_features) for i in range(k))
-    print(f"Iteration {iteration + 1}, total centroid shift: {shift:.6f}")
-    
-    if shift < tolerance:
-        print("Converged!")
-        break
-    
-    centroids = new_centroids
-
-# otput results
-print("\nFinal centroids:")
-for i, c in enumerate(centroids):
-    print(f"Cluster {i+1}: {c}")
-
-print("\nCluster assignments:")
-for i, cluster in enumerate(clusters):
-    print(f"Cluster {i+1}: {cluster}")
+model = KMeans(k=3)
+model.fit(data)
+model.print_results()
