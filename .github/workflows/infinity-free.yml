@@ -21,6 +21,8 @@ jobs:
           server: ftpupload.net
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /htdocs/ # For addon domains
-          timeout: 86400000
-          log-level: standard
+          server-dir: /diab-api.42web.io/htdocs/ # For addon domains
+          # timeout: 86400000
+          # log-level: standard
+          retries: 5
+          retryDelay: 10
