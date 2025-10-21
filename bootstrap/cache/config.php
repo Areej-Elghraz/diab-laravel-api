@@ -1,34 +1,33 @@
-<?php return array (
-  'broadcasting' => 
-  array (
+<?php return array(
+  'broadcasting' =>
+  array(
     'default' => 'log',
-    'connections' => 
-    array (
-      'reverb' => 
-      array (
+    'connections' =>
+    array(
+      'reverb' =>
+      array(
         'driver' => 'reverb',
         'key' => NULL,
         'secret' => NULL,
         'app_id' => NULL,
-        'options' => 
-        array (
+        'options' =>
+        array(
           'host' => NULL,
           'port' => 443,
           'scheme' => 'https',
           'useTLS' => true,
         ),
-        'client_options' => 
-        array (
-        ),
+        'client_options' =>
+        array(),
       ),
-      'pusher' => 
-      array (
+      'pusher' =>
+      array(
         'driver' => 'pusher',
         'key' => NULL,
         'secret' => NULL,
         'app_id' => NULL,
-        'options' => 
-        array (
+        'options' =>
+        array(
           'cluster' => NULL,
           'host' => 'api-mt1.pusher.com',
           'port' => 443,
@@ -36,40 +35,39 @@
           'encrypted' => true,
           'useTLS' => true,
         ),
-        'client_options' => 
-        array (
-        ),
+        'client_options' =>
+        array(),
       ),
-      'ably' => 
-      array (
+      'ably' =>
+      array(
         'driver' => 'ably',
         'key' => NULL,
       ),
-      'log' => 
-      array (
+      'log' =>
+      array(
         'driver' => 'log',
       ),
-      'null' => 
-      array (
+      'null' =>
+      array(
         'driver' => 'null',
       ),
     ),
   ),
-  'concurrency' => 
-  array (
+  'concurrency' =>
+  array(
     'default' => 'process',
   ),
-  'hashing' => 
-  array (
+  'hashing' =>
+  array(
     'driver' => 'bcrypt',
-    'bcrypt' => 
-    array (
+    'bcrypt' =>
+    array(
       'rounds' => '12',
       'verify' => true,
       'limit' => NULL,
     ),
-    'argon' => 
-    array (
+    'argon' =>
+    array(
       'memory' => 65536,
       'threads' => 1,
       'time' => 4,
@@ -77,16 +75,16 @@
     ),
     'rehash_on_login' => true,
   ),
-  'view' => 
-  array (
-    'paths' => 
-    array (
+  'view' =>
+  array(
+    'paths' =>
+    array(
       0 => 'D:\\apiCourse\\API_Projects\\diab-backend\\resources\\views',
     ),
     'compiled' => 'D:\\apiCourse\\API_Projects\\diab-backend\\storage\\framework\\views',
   ),
-  'app' => 
-  array (
+  'app' =>
+  array(
     'name' => 'Diab',
     'env' => 'local',
     'debug' => true,
@@ -99,16 +97,15 @@
     'faker_locale' => 'ar_EG',
     'cipher' => 'AES-256-CBC',
     'key' => '',
-    'previous_keys' => 
-    array (
-    ),
-    'maintenance' => 
-    array (
+    'previous_keys' =>
+    array(),
+    'maintenance' =>
+    array(
       'driver' => 'file',
       'store' => 'database',
     ),
-    'providers' => 
-    array (
+    'providers' =>
+    array(
       0 => 'Illuminate\\Auth\\AuthServiceProvider',
       1 => 'Illuminate\\Broadcasting\\BroadcastServiceProvider',
       2 => 'Illuminate\\Bus\\BusServiceProvider',
@@ -134,8 +131,8 @@
       22 => 'Illuminate\\View\\ViewServiceProvider',
       23 => 'App\\Providers\\AppServiceProvider',
     ),
-    'aliases' => 
-    array (
+    'aliases' =>
+    array(
       'App' => 'Illuminate\\Support\\Facades\\App',
       'Arr' => 'Illuminate\\Support\\Arr',
       'Artisan' => 'Illuminate\\Support\\Facades\\Artisan',
@@ -183,38 +180,38 @@
       'Vite' => 'Illuminate\\Support\\Facades\\Vite',
     ),
   ),
-  'auth' => 
-  array (
-    'defaults' => 
-    array (
+  'auth' =>
+  array(
+    'defaults' =>
+    array(
       'guard' => 'web',
       'passwords' => 'users',
     ),
-    'guards' => 
-    array (
-      'web' => 
-      array (
+    'guards' =>
+    array(
+      'web' =>
+      array(
         'driver' => 'session',
         'provider' => 'users',
       ),
-      'sanctum' => 
-      array (
+      'sanctum' =>
+      array(
         'driver' => 'sanctum',
         'provider' => NULL,
       ),
     ),
-    'providers' => 
-    array (
-      'users' => 
-      array (
+    'providers' =>
+    array(
+      'users' =>
+      array(
         'driver' => 'eloquent',
         'model' => 'App\\Models\\User',
       ),
     ),
-    'passwords' => 
-    array (
-      'users' => 
-      array (
+    'passwords' =>
+    array(
+      'users' =>
+      array(
         'provider' => 'users',
         'table' => 'password_reset_tokens',
         'expire' => 10,
@@ -223,60 +220,59 @@
     ),
     'password_timeout' => 10800,
   ),
-  'cache' => 
-  array (
+  'cache' =>
+  array(
     'default' => 'database',
-    'stores' => 
-    array (
-      'array' => 
-      array (
+    'stores' =>
+    array(
+      'array' =>
+      array(
         'driver' => 'array',
         'serialize' => false,
       ),
-      'database' => 
-      array (
+      'database' =>
+      array(
         'driver' => 'database',
         'connection' => NULL,
         'table' => 'cache',
         'lock_connection' => NULL,
         'lock_table' => NULL,
       ),
-      'file' => 
-      array (
+      'file' =>
+      array(
         'driver' => 'file',
         'path' => 'D:\\apiCourse\\API_Projects\\diab-backend\\storage\\framework/cache/data',
         'lock_path' => 'D:\\apiCourse\\API_Projects\\diab-backend\\storage\\framework/cache/data',
       ),
-      'memcached' => 
-      array (
+      'memcached' =>
+      array(
         'driver' => 'memcached',
         'persistent_id' => NULL,
-        'sasl' => 
-        array (
+        'sasl' =>
+        array(
           0 => NULL,
           1 => NULL,
         ),
-        'options' => 
-        array (
-        ),
-        'servers' => 
-        array (
-          0 => 
-          array (
+        'options' =>
+        array(),
+        'servers' =>
+        array(
+          0 =>
+          array(
             'host' => '127.0.0.1',
             'port' => 11211,
             'weight' => 100,
           ),
         ),
       ),
-      'redis' => 
-      array (
+      'redis' =>
+      array(
         'driver' => 'redis',
         'connection' => 'cache',
         'lock_connection' => 'default',
       ),
-      'dynamodb' => 
-      array (
+      'dynamodb' =>
+      array(
         'driver' => 'dynamodb',
         'key' => '',
         'secret' => '',
@@ -284,51 +280,49 @@
         'table' => 'cache',
         'endpoint' => NULL,
       ),
-      'octane' => 
-      array (
+      'octane' =>
+      array(
         'driver' => 'octane',
       ),
     ),
     'prefix' => 'diab-cache-',
   ),
-  'cors' => 
-  array (
-    'paths' => 
-    array (
+  'cors' =>
+  array(
+    'paths' =>
+    array(
       0 => 'api/*',
       1 => 'sanctum/csrf-cookie',
     ),
-    'allowed_methods' => 
-    array (
+    'allowed_methods' =>
+    array(
       0 => '*',
     ),
-    'allowed_origins' => 
-    array (
+    'allowed_origins' =>
+    array(
       0 => 'localhost',
       1 => 'http://localhost:5173',
       2 => 'http://127.0.0.1:3000',
       3 => 'http://localhost:3000',
     ),
-    'allowed_origins_patterns' => 
-    array (
-    ),
-    'allowed_headers' => 
-    array (
+    'allowed_origins_patterns' =>
+    array(),
+    'allowed_headers' =>
+    array(
       0 => '*',
     ),
-    'exposed_headers' => 
-    array (
-    ),
+    'exposed_headers' =>
+    array(),
     'max_age' => 0,
     'supports_credentials' => false,
   ),
-  'database' => 
-  array (
+  'database' =>
+  array(
     'default' => 'mysql',
-    'connections' => 
-    array (
-      'sqlite' => 
-      array (
+    'connections' =>
+    array(
+      'sqlite' =>
+      array(
         'driver' => 'sqlite',
         'url' => NULL,
         'database' => 'if0_40179111_diab_backend',
@@ -338,15 +332,20 @@
         'journal_mode' => NULL,
         'synchronous' => NULL,
       ),
-      'mysql' => 
-      array (
+      'mysql' =>
+      array(
         'driver' => 'mysql',
         'url' => NULL,
-        'host' => 'sql313.infinityfree.com',
-        'port' => '3306',
-        'database' => 'if0_40179111_diab_backend',
-        'username' => 'if0_40179111',
-        'password' => 'diabadmin123',
+        'host' => '127.0.0.1',
+        'port' => '3307',
+        'database' => 'diab_backend',
+        'username' => 'root',
+        'password' => '',
+        // 'host' => 'sql313.infinityfree.com',
+        // 'port' => '3306',
+        // 'database' => 'if0_40179111_diab_backend',
+        // 'username' => 'if0_40179111',
+        // 'password' => 'diabadmin123',
         'unix_socket' => '',
         'charset' => 'utf8mb4',
         'collation' => 'utf8mb4_unicode_ci',
@@ -355,19 +354,23 @@
         'strict' => true,
         'engine' => NULL,
         'timezone' => '+03:00',
-        'options' => 
-        array (
-        ),
+        'options' =>
+        array(),
       ),
-      'mariadb' => 
-      array (
+      'mariadb' =>
+      array(
         'driver' => 'mariadb',
         'url' => NULL,
-        'host' => 'sql313.infinityfree.com',
-        'port' => '3306',
-        'database' => 'if0_40179111_diab_backend',
-        'username' => 'if0_40179111',
-        'password' => 'diabadmin123',
+        'host' => '127.0.0.1',
+        'port' => '3307',
+        'database' => 'diab_backend',
+        'username' => 'root',
+        'password' => '',
+        // 'host' => 'sql313.infinityfree.com',
+        // 'port' => '3306',
+        // 'database' => 'if0_40179111_diab_backend',
+        // 'username' => 'if0_40179111',
+        // 'password' => 'diabadmin123',
         'unix_socket' => '',
         'charset' => 'utf8mb4',
         'collation' => 'utf8mb4_unicode_ci',
@@ -375,55 +378,64 @@
         'prefix_indexes' => true,
         'strict' => true,
         'engine' => NULL,
-        'options' => 
-        array (
-        ),
+        'options' =>
+        array(),
       ),
-      'pgsql' => 
-      array (
+      'pgsql' =>
+      array(
         'driver' => 'pgsql',
         'url' => NULL,
-        'host' => 'sql313.infinityfree.com',
-        'port' => '3306',
-        'database' => 'if0_40179111_diab_backend',
-        'username' => 'if0_40179111',
-        'password' => 'diabadmin123',
-        'charset' => 'utf8',
+        'host' => '127.0.0.1',
+        'port' => '3307',
+        'database' => 'diab_backend',
+        'username' => 'root',
+        'password' => '',
+        // 'host' => 'sql313.infinityfree.com',
+        // 'port' => '3306',
+        // 'database' => 'if0_40179111_diab_backend',
+        // 'username' => 'if0_40179111',
+        // 'password' => 'diabadmin123',
+        // 'charset' => 'utf8',
         'prefix' => '',
         'prefix_indexes' => true,
         'search_path' => 'public',
         'sslmode' => 'prefer',
       ),
-      'sqlsrv' => 
-      array (
+      'sqlsrv' =>
+      array(
         'driver' => 'sqlsrv',
         'url' => NULL,
-        'host' => 'sql313.infinityfree.com',
-        'port' => '3306',
-        'database' => 'if0_40179111_diab_backend',
-        'username' => 'if0_40179111',
-        'password' => 'diabadmin123',
+        'host' => '127.0.0.1',
+        'port' => '3307',
+        'database' => 'diab_backend',
+        'username' => 'root',
+        'password' => '',
+        // 'host' => 'sql313.infinityfree.com',
+        // 'port' => '3306',
+        // 'database' => 'if0_40179111_diab_backend',
+        // 'username' => 'if0_40179111',
+        // 'password' => 'diabadmin123',
         'charset' => 'utf8',
         'prefix' => '',
         'prefix_indexes' => true,
       ),
     ),
-    'migrations' => 
-    array (
+    'migrations' =>
+    array(
       'table' => 'migrations',
       'update_date_on_publish' => true,
     ),
-    'redis' => 
-    array (
+    'redis' =>
+    array(
       'client' => 'phpredis',
-      'options' => 
-      array (
+      'options' =>
+      array(
         'cluster' => 'redis',
         'prefix' => 'diab-database-',
         'persistent' => false,
       ),
-      'default' => 
-      array (
+      'default' =>
+      array(
         'url' => NULL,
         'host' => '127.0.0.1',
         'username' => NULL,
@@ -431,8 +443,8 @@
         'port' => '6379',
         'database' => '0',
       ),
-      'cache' => 
-      array (
+      'cache' =>
+      array(
         'url' => NULL,
         'host' => '127.0.0.1',
         'username' => NULL,
@@ -442,21 +454,21 @@
       ),
     ),
   ),
-  'filesystems' => 
-  array (
+  'filesystems' =>
+  array(
     'default' => 'local',
-    'disks' => 
-    array (
-      'local' => 
-      array (
+    'disks' =>
+    array(
+      'local' =>
+      array(
         'driver' => 'local',
         'root' => 'D:\\apiCourse\\API_Projects\\diab-backend\\storage\\app/private',
         'serve' => true,
         'throw' => false,
         'report' => false,
       ),
-      'public' => 
-      array (
+      'public' =>
+      array(
         'driver' => 'local',
         'root' => 'D:\\apiCourse\\API_Projects\\diab-backend\\storage\\app/public',
         'url' => '/storage',
@@ -464,8 +476,8 @@
         'throw' => false,
         'report' => false,
       ),
-      's3' => 
-      array (
+      's3' =>
+      array(
         'driver' => 's3',
         'key' => '',
         'secret' => '',
@@ -478,47 +490,47 @@
         'report' => false,
       ),
     ),
-    'links' => 
-    array (
+    'links' =>
+    array(
       'D:\\apiCourse\\API_Projects\\diab-backend\\public\\storage' => 'D:\\apiCourse\\API_Projects\\diab-backend\\storage\\app/public',
     ),
   ),
-  'logging' => 
-  array (
+  'logging' =>
+  array(
     'default' => 'stack',
-    'deprecations' => 
-    array (
+    'deprecations' =>
+    array(
       'channel' => NULL,
       'trace' => false,
     ),
-    'channels' => 
-    array (
-      'stack' => 
-      array (
+    'channels' =>
+    array(
+      'stack' =>
+      array(
         'driver' => 'stack',
-        'channels' => 
-        array (
+        'channels' =>
+        array(
           0 => 'single',
         ),
         'ignore_exceptions' => false,
       ),
-      'single' => 
-      array (
+      'single' =>
+      array(
         'driver' => 'single',
         'path' => 'D:\\apiCourse\\API_Projects\\diab-backend\\storage\\logs/laravel.log',
         'level' => 'debug',
         'replace_placeholders' => true,
       ),
-      'daily' => 
-      array (
+      'daily' =>
+      array(
         'driver' => 'daily',
         'path' => 'D:\\apiCourse\\API_Projects\\diab-backend\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
         'replace_placeholders' => true,
       ),
-      'slack' => 
-      array (
+      'slack' =>
+      array(
         'driver' => 'slack',
         'url' => NULL,
         'username' => 'Laravel Log',
@@ -526,68 +538,68 @@
         'level' => 'debug',
         'replace_placeholders' => true,
       ),
-      'papertrail' => 
-      array (
+      'papertrail' =>
+      array(
         'driver' => 'monolog',
         'level' => 'debug',
         'handler' => 'Monolog\\Handler\\SyslogUdpHandler',
-        'handler_with' => 
-        array (
+        'handler_with' =>
+        array(
           'host' => NULL,
           'port' => NULL,
           'connectionString' => 'tls://:',
         ),
-        'processors' => 
-        array (
+        'processors' =>
+        array(
           0 => 'Monolog\\Processor\\PsrLogMessageProcessor',
         ),
       ),
-      'stderr' => 
-      array (
+      'stderr' =>
+      array(
         'driver' => 'monolog',
         'level' => 'debug',
         'handler' => 'Monolog\\Handler\\StreamHandler',
-        'handler_with' => 
-        array (
+        'handler_with' =>
+        array(
           'stream' => 'php://stderr',
         ),
         'formatter' => NULL,
-        'processors' => 
-        array (
+        'processors' =>
+        array(
           0 => 'Monolog\\Processor\\PsrLogMessageProcessor',
         ),
       ),
-      'syslog' => 
-      array (
+      'syslog' =>
+      array(
         'driver' => 'syslog',
         'level' => 'debug',
         'facility' => 8,
         'replace_placeholders' => true,
       ),
-      'errorlog' => 
-      array (
+      'errorlog' =>
+      array(
         'driver' => 'errorlog',
         'level' => 'debug',
         'replace_placeholders' => true,
       ),
-      'null' => 
-      array (
+      'null' =>
+      array(
         'driver' => 'monolog',
         'handler' => 'Monolog\\Handler\\NullHandler',
       ),
-      'emergency' => 
-      array (
+      'emergency' =>
+      array(
         'path' => 'D:\\apiCourse\\API_Projects\\diab-backend\\storage\\logs/laravel.log',
       ),
     ),
   ),
-  'mail' => 
-  array (
+  'mail' =>
+  array(
     'default' => 'smtp',
-    'mailers' => 
-    array (
-      'smtp' => 
-      array (
+    'mailers' =>
+    array(
+      'smtp' =>
+      array(
         'transport' => 'smtp',
         'scheme' => NULL,
         'url' => NULL,
@@ -598,84 +610,84 @@
         'timeout' => NULL,
         'local_domain' => NULL,
       ),
-      'ses' => 
-      array (
+      'ses' =>
+      array(
         'transport' => 'ses',
       ),
-      'postmark' => 
-      array (
+      'postmark' =>
+      array(
         'transport' => 'postmark',
       ),
-      'resend' => 
-      array (
+      'resend' =>
+      array(
         'transport' => 'resend',
       ),
-      'sendmail' => 
-      array (
+      'sendmail' =>
+      array(
         'transport' => 'sendmail',
         'path' => '/usr/sbin/sendmail -bs -i',
       ),
-      'log' => 
-      array (
+      'log' =>
+      array(
         'transport' => 'log',
         'channel' => NULL,
       ),
-      'array' => 
-      array (
+      'array' =>
+      array(
         'transport' => 'array',
       ),
-      'failover' => 
-      array (
+      'failover' =>
+      array(
         'transport' => 'failover',
-        'mailers' => 
-        array (
+        'mailers' =>
+        array(
           0 => 'smtp',
           1 => 'log',
         ),
         'retry_after' => 60,
       ),
-      'roundrobin' => 
-      array (
+      'roundrobin' =>
+      array(
         'transport' => 'roundrobin',
-        'mailers' => 
-        array (
+        'mailers' =>
+        array(
           0 => 'ses',
           1 => 'postmark',
         ),
         'retry_after' => 60,
       ),
     ),
-    'from' => 
-    array (
+    'from' =>
+    array(
       'address' => 'diabfurnitures@gmail.com',
       'name' => 'Diab',
     ),
-    'markdown' => 
-    array (
+    'markdown' =>
+    array(
       'theme' => 'default',
-      'paths' => 
-      array (
+      'paths' =>
+      array(
         0 => 'D:\\apiCourse\\API_Projects\\diab-backend\\resources\\views/vendor/mail',
       ),
     ),
   ),
-  'max' => 
-  array (
+  'max' =>
+  array(
     'admins' => '1',
     'banners' => '10',
     'product_images' => '5',
   ),
-  'queue' => 
-  array (
+  'queue' =>
+  array(
     'default' => 'database',
-    'connections' => 
-    array (
-      'sync' => 
-      array (
+    'connections' =>
+    array(
+      'sync' =>
+      array(
         'driver' => 'sync',
       ),
-      'database' => 
-      array (
+      'database' =>
+      array(
         'driver' => 'database',
         'connection' => NULL,
         'table' => 'jobs',
@@ -683,8 +695,8 @@
         'retry_after' => 90,
         'after_commit' => false,
       ),
-      'beanstalkd' => 
-      array (
+      'beanstalkd' =>
+      array(
         'driver' => 'beanstalkd',
         'host' => 'localhost',
         'queue' => 'default',
@@ -692,8 +704,8 @@
         'block_for' => 0,
         'after_commit' => false,
       ),
-      'sqs' => 
-      array (
+      'sqs' =>
+      array(
         'driver' => 'sqs',
         'key' => '',
         'secret' => '',
@@ -703,8 +715,8 @@
         'region' => 'us-east-1',
         'after_commit' => false,
       ),
-      'redis' => 
-      array (
+      'redis' =>
+      array(
         'driver' => 'redis',
         'connection' => 'default',
         'queue' => 'default',
@@ -713,36 +725,36 @@
         'after_commit' => false,
       ),
     ),
-    'batching' => 
-    array (
+    'batching' =>
+    array(
       'database' => 'mysql',
       'table' => 'job_batches',
     ),
-    'failed' => 
-    array (
+    'failed' =>
+    array(
       'driver' => 'database-uuids',
       'database' => 'mysql',
       'table' => 'failed_jobs',
     ),
   ),
-  'sanctum' => 
-  array (
-    'stateful' => 
-    array (
+  'sanctum' =>
+  array(
+    'stateful' =>
+    array(
       0 => 'localhost',
       1 => 'localhost:3000',
       2 => '127.0.0.1',
       3 => '127.0.0.1:8000',
       4 => '::1',
     ),
-    'guard' => 
-    array (
+    'guard' =>
+    array(
       0 => 'web',
     ),
     'expiration' => NULL,
     'token_prefix' => '',
-    'middleware' => 
-    array (
+    'middleware' =>
+    array(
       'authenticate_session' => 'Laravel\\Sanctum\\Http\\Middleware\\AuthenticateSession',
       'encrypt_cookies' => 'Illuminate\\Cookie\\Middleware\\EncryptCookies',
       'validate_csrf_token' => 'Illuminate\\Foundation\\Http\\Middleware\\ValidateCsrfToken',
@@ -750,33 +762,33 @@
     'access_token_expiration' => 2,
     'remember_token_expiration' => 30,
   ),
-  'services' => 
-  array (
-    'postmark' => 
-    array (
+  'services' =>
+  array(
+    'postmark' =>
+    array(
       'token' => NULL,
     ),
-    'resend' => 
-    array (
+    'resend' =>
+    array(
       'key' => NULL,
     ),
-    'ses' => 
-    array (
+    'ses' =>
+    array(
       'key' => '',
       'secret' => '',
       'region' => 'us-east-1',
     ),
-    'slack' => 
-    array (
-      'notifications' => 
-      array (
+    'slack' =>
+    array(
+      'notifications' =>
+      array(
         'bot_user_oauth_token' => NULL,
         'channel' => NULL,
       ),
     ),
   ),
-  'session' => 
-  array (
+  'session' =>
+  array(
     'driver' => 'database',
     'lifetime' => 120,
     'expire_on_close' => false,
@@ -785,8 +797,8 @@
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
-    'lottery' => 
-    array (
+    'lottery' =>
+    array(
       0 => 2,
       1 => 100,
     ),
@@ -798,16 +810,14 @@
     'same_site' => 'lax',
     'partitioned' => false,
   ),
-  'tinker' => 
-  array (
-    'commands' => 
-    array (
-    ),
-    'alias' => 
-    array (
-    ),
-    'dont_alias' => 
-    array (
+  'tinker' =>
+  array(
+    'commands' =>
+    array(),
+    'alias' =>
+    array(),
+    'dont_alias' =>
+    array(
       0 => 'App\\Nova',
     ),
   ),
