@@ -62,8 +62,4 @@ class ProductImage extends Model
     {
         return $this->position == 'gallery';
     }
-
-
-    // with categories
-
 }

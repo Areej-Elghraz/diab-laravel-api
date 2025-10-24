@@ -12,15 +12,14 @@ class OtpMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $otp;
-    public $minutes;
-    public $name;
-    public $url;
+    public $otp, $minutes, $maxTimes, $remainTimes, $name, $url;
 
-    public function __construct(string $otp, int $minutes, string $name, string $url)
+    public function __construct(string $otp, int $minutes, int $maxTimes, int $remainTimes, string $name, string $url)
     {
         $this->otp = $otp;
         $this->minutes = $minutes;
+        $this->maxTimes = $maxTimes;
+        $this->remainTimes = $remainTimes;
         $this->name = $name;
         $this->url = $url;
     }
@@ -39,6 +38,8 @@ class OtpMail extends Mailable
             with: [
                 'otp' => $this->otp,
                 'minutes' => $this->minutes,
+                'times' => $this->maxTimes,
+                'remainTimes' => $this->remainTimes,
                 'name' => $this->name,
                 'url' => $this->url,
             ],

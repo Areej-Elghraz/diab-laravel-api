@@ -20,7 +20,7 @@ class SocialLinkController extends ApiController
         }, __('messages.actions.retrieved_success', ['resource' => $this->resources($this->key)]));
     }
 
-    public function store(StoreSocialLinkRequest $request) ///
+    public function store(StoreSocialLinkRequest $request)
     {
         return $this->runWithTransaction(function () use ($request) {
             return [
@@ -29,7 +29,7 @@ class SocialLinkController extends ApiController
         }, __('messages.actions.created_success', ['resource' => $this->resource($this->key)]), successStatus: 201);
     }
 
-    public function show(SocialLink $socialLink) /// not verified...
+    public function show(SocialLink $socialLink)
     {
         return $this->runWithTransaction(function () use ($socialLink) {
             return [
@@ -38,7 +38,7 @@ class SocialLinkController extends ApiController
         }, __('messages.actions.retrieved_success', ['resource' => $this->resource($this->key)]));
     }
 
-    public function update(UpdateSocialLinkRequest $request, SocialLink $socialLink) /// not verified...
+    public function update(UpdateSocialLinkRequest $request, SocialLink $socialLink)
     {
         return $this->runWithTransaction(function () use ($request, $socialLink) {
             $socialLink->update($request->validated());
@@ -48,7 +48,7 @@ class SocialLinkController extends ApiController
         }, __('messages.actions.updated_success', ['resource' => $this->resource($this->key)]));
     }
 
-    public function destroy(SocialLink $socialLink) ///
+    public function destroy(SocialLink $socialLink)
     {
         return $this->runWithTransaction(function () use ($socialLink) {
             $socialLink->delete();

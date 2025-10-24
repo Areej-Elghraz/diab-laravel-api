@@ -23,17 +23,4 @@ class AdminMiddleware
         }
         return $next($request);
     }
-
-    /// phone verification public function handle(Request $request, Closure $next): Response
-    // public function handle(Request $request, Closure $next): Response
-    // {
-    //     $user = $request->user();
-
-    //     if (is_null($user->email_verified_at) && is_null($user->phone_verified_at)) {
-    //         return response()->json([
-    //             'message' => 'Your account is not verified yet. Please verify your email or phone.'
-    //         ], 403);
-    //     }
-    //     return $next($request);
-    // }
 }

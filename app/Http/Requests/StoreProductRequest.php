@@ -27,10 +27,10 @@ class StoreProductRequest extends FormRequest
             'name'        => 'required|string|max:100',
             'description' => 'sometimes|nullable|string',
             'category_id' => 'required|integer|exists:categories,id',
-            'images'      => 'required|array|min:2', /// images
-            'images.*'    => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',  /// images.*
-            'positions'   => 'required|array|size:' . count($this->images), /// positions
-            'positions.*' => ['required', new Enum(ProductImagePositionEnum::class)], /// positions.*
+            'images'      => 'required|array|min:2',
+            'images.*'    => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'positions'   => 'required|array|size:' . count($this->images),
+            'positions.*' => ['required', new Enum(ProductImagePositionEnum::class)],
             'include'     => $this->includeRule(ProductRelationEnum::values()),
         ];
     }

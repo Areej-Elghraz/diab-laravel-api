@@ -19,32 +19,16 @@ class Product extends Model
         'name',
         'description',
         'category_id',
-        // 'created_by',
-        // 'updated_by',
     ];
 
     protected $hidden = [
         'category_id',
         'deleted_at',
-        // 'created_by',
-        // 'updated_by',
     ];
 
     protected $appends = [
-        // 'before_image',
-        // 'after_image',
         'images_count',
     ];
-
-    // public function creator(): BelongsTo
-    // {
-    //     return $this->belongsTo(User::class, 'created_by');
-    // }
-
-    // public function updater(): BelongsTo
-    // {
-    //     return $this->belongsTo(User::class, 'updated_by');
-    // }
 
     public function category(): BelongsTo
     {
@@ -78,16 +62,4 @@ class Product extends Model
     {
         return $this->images()->count();
     }
-
-    // public function getBeforeImageAttribute()
-    // {
-    //     return $this->beforeImages()->with(['creator', 'updater'])->first();
-    // }
-
-    // public function getAfterImageAttribute()
-    // {
-    //     return $this->afterImages()->with(['creator', 'updater'])->first();
-    // }
-
-    // with categories!!!!!! NO
 }

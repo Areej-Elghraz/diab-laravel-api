@@ -22,7 +22,8 @@ class ProductIncludeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'include' => $this->includeRule(ProductRelationEnum::values()),
+            'include'  => $this->includeRule(ProductRelationEnum::values()),
+            'per_page' => 'sometimes|nullable|integer|min:1',
         ];
     }
 }

@@ -14,7 +14,6 @@ class CreateAdmin extends Command
      *
      * @var string
      */
-    // protected $signature = 'app:create-super-admin';
     protected $signature = 'create:admin';
 
     /**
@@ -30,7 +29,6 @@ class CreateAdmin extends Command
         try {
             $name = $this->ask('Enter Name: ');
             $username = $this->ask('Enter Username: ');
-            $phone = $this->ask('Enter Phone number: ');
             $email = $this->ask('Enter Email: ');
             $password = $this->secret('Enter Password: ');
 
@@ -42,24 +40,18 @@ class CreateAdmin extends Command
                 [
                     'name' => $name,
                     'email' => $email,
+                    'email_verified_at' => now(),
                     'password' => Hash::make($password),
                     'role' => 1,
-                    'phone' => $phone,
                 ]
             );
 
-            try {
-                $user->sendEmailVerificationNotification();
-            } catch (\Throwable $mailEx) {
-                $this->error("Email verification failed: {$mailEx->getMessage()}");
-            }
-
             DB::commit();
 
-            $this->info("Super admin created successfully with email: {$user->email}");
+            $this->info(__('messages.actions.created_success', ['resource' => __('messages.resources.admin.singular')]));
         } catch (\Exception $e) {
             DB::rollBack();
-            $this->error("Creation failed: {$e->getMessage()}");
+            $this->error(__('messages.actions.error'));
         }
     }
 }

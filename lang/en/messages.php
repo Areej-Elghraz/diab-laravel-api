@@ -4,14 +4,15 @@ return [
   'login_success'   => 'Logged in successfully!',
   'logout_success'  => 'Logged out successfully!',
   'password_reset'  => 'Password reset successfully!',
-  'otp_sent'        => '(OTP) sent to your email.',
+  'otp_sent'        => 'OTP sent to your email.',
   'otp_verified'    => 'OTP verified successfully!',
   'token_generated' => 'Token Created successfully!',
-  // 'images_actions.deleted_success' => ': resource images deleted successfully!',
 
   // Resources.
   'resources' => [
-    'user'         => ['singular' => 'User',        'plural' => 'Users',],
+    'resource'     => ['singular' => 'Resource',      'plural' => 'Resources',],
+    'admin'        => ['singular' => 'Admin',         'plural' => 'Admins',],
+    'user'         => ['singular' => 'User',          'plural' => 'Users',],
     'banner'       => ['singular' => 'Banner',        'plural' => 'Banners',],
     'category'     => ['singular' => 'Category',      'plural' => 'Categories',],
     'phonenumber'  => ['singular' => 'Phone number',  'plural' => 'Phone numbers',],
@@ -24,12 +25,13 @@ return [
   ],
 
   'actions' => [
-    'retrieved_success'      => ':resource retrieved successfully!',
-    'created_success'        => ':resource created successfully!',
-    'updated_success'        => ':resource updated successfully!',
-    'deleted_success'        => ':resource deleted successfully!',
-    'restored_success'       => ':resource restored successfully!',
-    'force_deleted_success'  => ':resource permanently deleted!',
+    'retrieved_success'     => ':resource retrieved successfully!',
+    'created_success'       => ':resource created successfully!',
+    'updated_success'       => ':resource updated successfully!',
+    'deleted_success'       => ':resource deleted successfully!',
+    'restored_success'      => ':resource restored successfully!',
+    'force_deleted_success' => ':resource permanently deleted!',
+    'error'                 => 'Something went wrong while processing your request. Please try again later!',
   ],
 
   // Error messages.
@@ -47,7 +49,8 @@ return [
   'invalid_json'               => 'The provided JSON data is invalid.',
   'max_reached'                => 'You have reached the maximum allowed number of :object (:max).',
   'already_otp_resent'         => 'OTP already sent to your email!',
-  'wait_before_resend'         => 'Please wait :minutes minute(s) before resending the code.',
+  'wait_before_resend'         => 'Please wait :remain_seconds second(s) before resending the code.',
+  'must_verify_otp_first'      => 'You must verify your OTP before resetting your password.',
 
   // Mail messages.
   'mail' => [
@@ -56,6 +59,7 @@ return [
     'body'              => 'Use the following One-Time Password (OTP) to verify your email:',
     'verify_button'     => 'Verify Here',
     'expire'            => 'This code will expire in <strong>:minutes minutes</strong>.',
+    'remaining_times'   => 'You can resend the code :remain more times (out of :max allowed).',
     'ignore'            => 'If you didn’t request this, you can safely ignore this email.',
     'footer'            => 'All rights reserved.',
     'verification_code' => 'Verification Code',

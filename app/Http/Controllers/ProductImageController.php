@@ -42,7 +42,7 @@ class ProductImageController extends ApiController
 
             foreach (['before', 'after'] as $position) {
                 if (($position_counts[$position] ?? 0) > 1) {
-                    throw ValidationException::withMessages(['positions' => __('validation.only_one_position', ['attribute' => $position])]);
+                    throw ValidationException::withMessages(['positions' => __('validation.only_one_position', ['attribute' => __('validation.attributes.' . $position)])]);
                 }
             }
 
@@ -64,8 +64,6 @@ class ProductImageController extends ApiController
 
             return [
                 'images' => $product->refresh()->images->load($includes ?? []),
-                // 'images' => $product->refresh()->images,
-                // 'upload_paths' => $uploadedPaths[]
             ];
         },  __('messages.actions.created_success', ['resource' => $this->resources($this->key)]), uploadedPaths: $uploadedPaths, successStatus: 201);
     }
@@ -108,7 +106,7 @@ class ProductImageController extends ApiController
                 foreach (['before', 'after'] as $position) {
                     $checkMethod = 'is' . ucfirst($position) . 'Image';
                     if ($productImage->$checkMethod()) {
-                        throw ValidationException::withMessages(['position' => __('validation.cannot_update_position', ['attribute' => $position])]);
+                        throw ValidationException::withMessages(['position' => __('validation.cannot_update_position', ['attribute' => __('validation.attributes.' . $position)])]);
                     }
                 }
                 if (in_array($validated['position'], ['before', 'after'])) {
@@ -150,7 +148,7 @@ class ProductImageController extends ApiController
             foreach (['before', 'after'] as $position) {
                 $checkMethod = 'is' . ucfirst($position) . 'Image';
                 if ($productImage->$checkMethod()) {
-                    throw new \Exception(__('messages.cannot_delete_position', ['attribute' => $position]), 403);
+                    throw new \Exception(__('messages.cannot_delete_position', ['attribute' => __('validation.attributes.' . $position)]), 403);
                 }
             }
 

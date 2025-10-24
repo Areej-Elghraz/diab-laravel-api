@@ -46,6 +46,7 @@
               </table>
 
               <p>{!! __('messages.mail.expire', ['minutes' => $minutes]) !!}</p>
+              <p style="margin-top:10px;">{{ __('messages.mail.remaining_times', ['remain' => $remainTimes, 'max' => $maxTimes]) }}</p>
             </td>
           </tr>
 

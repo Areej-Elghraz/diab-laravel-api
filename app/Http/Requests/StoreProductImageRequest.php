@@ -24,10 +24,10 @@ class StoreProductImageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'images'      => 'required|array', /// images
-            'images.*'    => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',  /// images.*
+            'images'      => 'required|array',
+            'images.*'    => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'positions'   => "required_with:images|array|size:" . count($this->images),
-            'positions.*' => ['required', new Enum(ProductImagePositionEnum::class)], /// positions.*
+            'positions.*' => ['required', new Enum(ProductImagePositionEnum::class)],
             'include'     => $this->includeRule(ProductImageRelationEnum::values()),
         ];
     }

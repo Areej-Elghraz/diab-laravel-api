@@ -21,9 +21,8 @@ class ResetPasswordController extends ApiController
                 ? 'email'
                 : 'username';
 
-            $user       = User::where($inputType, $validated['input'])->first();
-            $expiration = config('auth.passwords.users.expire', 10); //minutes
-            $otpRecord  = DB::table('password_reset_tokens')
+            $user      = User::where($inputType, $validated['input'])?->first();
+            $otpRecord = DB::table('password_reset_tokens')
                 ->where('email', $user->email)
                 ->first();
 
@@ -31,19 +30,8 @@ class ResetPasswordController extends ApiController
                 throw ValidationException::withMessages(['input' => __('validation.invalid_value', ['attribute' => __('validation.attributes.' . $inputType)])]);
             }
 
-            if (!$otpRecord) {
-                throw ValidationException::withMessages(['otp' => __('validation.invalid_value', ['attribute' => __('validation.attributes.otp')])]);
-            }
-
-            if ($otpRecord) {
-                $createdAt    = \Carbon\Carbon::parse($otpRecord->created_at);
-                $minutesSince = $createdAt->diffInMinutes(now());
-                if ($minutesSince >= $expiration) {
-                    throw ValidationException::withMessages(['otp' => __('messages.already_otp_resent')]);
-                }
-                if (!Hash::check($validated['otp'], $otpRecord->token)) {
-                    throw ValidationException::withMessages(['otp' => __('validation.invalid_value', ['attribute' => __('validation.attributes.otp')])]);
-                }
+            if (!$otpRecord || empty($otpRecord->verified) || !$otpRecord->verified) {
+                throw new \Exception(__('messages.must_verify_otp_first'));
             }
 
             if (Hash::check($validated['new_password'], $user->password)) {

@@ -11,7 +11,7 @@ use Illuminate\Validation\ValidationException;
 class ForgetPasswordController extends ApiController
 {
     public function __invoke(ForgetPasswordRequest $request, SendOtpService $sendOtpService)
-    { /// message delay?!
+    {
         return $this->runWithTransaction(function () use ($request, $sendOtpService) {
 
             $validated = $request->validated();

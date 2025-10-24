@@ -5,7 +5,6 @@ namespace App\Http\Requests;
 use App\Enums\PhoneNumberTypeEnum;
 use App\Traits\HasIncludeRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Enum;
 
 class IndexPhoneNumberRequest extends FormRequest
 {

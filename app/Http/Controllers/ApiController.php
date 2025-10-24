@@ -25,10 +25,6 @@ abstract class ApiController
             'data' => $parameters
         ];
 
-        // if (!empty($parameters)) {
-        //     $response = array_merge($response, $parameters);
-        // }
-
         return response()->json($response, $status);
     }
 
@@ -70,22 +66,21 @@ abstract class ApiController
             );
         } catch (\Exception $e) {
             DB::rollBack();
-            // Log::error($e);
-
             if (!empty($uploadedPaths)) {
                 foreach ($uploadedPaths as $image) {
                     Storage::disk('public')->delete($image);
                 }
             }
+
             $code = $e->getCode();
             if ($code && is_numeric($code) && count_chars((string) $code) == 3 && in_array(count_chars((string) $code)[0], ['1', '2', '3', '4', '5'])) {
                 $statusCode =  $code;
             }
 
             return $this->errorResponse(
-                message: $e->getMessage(),
+                message: __('messages.actions.error'),
+                // message: $e->getMessage(), ///
                 status: $statusCode ?? 400,
-                // parameters: ['error' => $e->getMessage()]
             );
         }
     }

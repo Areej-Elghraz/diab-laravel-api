@@ -33,7 +33,6 @@ class PhoneNumber extends Model
     public function scopeOfType(Builder $query, array $type)
     {
         /** @var \Illuminate\Database\Eloquent\Builder $query */
-        // $allTypes = PhoneNumberTypeEnum::values();
         $type = array_map('strtolower', $type);
 
         if (array_diff($type, $this->allTypes)) {
@@ -43,43 +42,9 @@ class PhoneNumber extends Model
         return $this->phonesByType($query, $type);
     }
 
-    // public function scopeOfType(Builder $query, array $types)
-    // {
-    //     /** @var \Illuminate\Database\Eloquent\Builder $query */
-    //     return $query->whereJsonContains('type', $types);
-    // }
-
     public function phonesByType($query, array $type)
     {
         return $query->whereJsonContains('type', $type)
             ->whereJsonDoesntContain('type', array_diff($this->allTypes, $type));
     }
-
-    // public function scopeOnlyOfType(Builder $query, array $types)
-    // {
-    //     /** @var \Illuminate\Database\Eloquent\Builder $query */
-    //     $phoneTypes = PhoneNumberTypeEnum::values();
-    //     $remainingTypes = array_diff($phoneTypes, $types);
-
-    //     return $query
-    //         ->whereJsonContains('type', $types)
-    //         ->whereJsonDoesntContain('type', $remainingTypes);
-    // }
-
-
-    // public function creator(): BelongsTo
-    // {
-    //     return $this->belongsTo(User::class, 'created_by');
-    // }
-
-    // public function siteInformation(): BelongsTo
-    // {
-    //     return $this->belongsTo(User::class, 'created_by');
-    // }
-
-    // public function updater(): BelongsTo
-    // {
-    //     return $this->belongsTo(User::class, 'updated_by');
-    // }
-
 }

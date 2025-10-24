@@ -7,14 +7,10 @@ use App\Models\User;
 use App\Models\Category;
 use App\Models\PhoneNumber;
 use App\Models\Product;
-use App\Models\ProductCategories;
 use App\Models\ProductImage;
 use App\Models\SocialLink;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {

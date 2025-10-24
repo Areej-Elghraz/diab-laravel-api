@@ -16,16 +16,6 @@ class CategoryController extends ApiController
     public function index(CategoryIncludeRequest $request)
     {
         return $this->runWithTransaction(function () use ($request) {
-
-            if ($request->include ?? null) {
-                $includes = $this->includeStrToArray($request->include);
-            }
-
-            // $categories = Category::with($includes ?? [])
-            //     ->withCount('products')
-            //     ->orderByDesc('products_count')
-            //     ->get();
-
             $request->validated();
 
             /** @var \App\Models\User $user */
@@ -84,7 +74,6 @@ class CategoryController extends ApiController
                 $includes = $this->includeStrToArray($request->include);
             }
 
-            // $validated = $request->validated();
             $category->update($request->validated());
 
             return [

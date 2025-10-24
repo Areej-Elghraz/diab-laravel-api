@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RefreshTokenController;
 use App\Http\Controllers\Auth\ResendOtpController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\VerifyOtpController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductImageController;
@@ -17,16 +18,11 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 
-// auth operations using AuthController methods
-// Route::controller(AuthController::class)->group(function () {
-//     Route::post('/login', 'login')->name('login');
-//     Route::post('/forget-password', 'forgetPassword')->name('password.email'); /// api:sanctum, adminController
-//     Route::post('/reset-password', 'resetPassword')->name('password.update'); /// api:sanctum, adminController
-// });
 Route::post('/login', LoginController::class)->name('auth.login');
-Route::post('/forget-password', ForgetPasswordController::class)->name('auth.forget-password'); /// api:sanctum, adminController
-Route::post('/reset-password', ResetPasswordController::class)->name('auth.reset-password');
+Route::post('/forget-password', ForgetPasswordController::class)->name('auth.forget-password');
 Route::post('/resend-otp', ResendOtpController::class)->name('auth.resend-otp');
+Route::post('/verify-otp', VerifyOtpController::class)->name('auth.verify-otp');
+Route::post('/reset-password', ResetPasswordController::class)->name('auth.reset-password');
 
 $resources = [
     'categories'    => CategoryController::class,

@@ -22,23 +22,15 @@ class ProductController extends ApiController
 
             $request->validated();
 
-            /** @var \App\Models\User $user */
-            $user = auth('sanctum')->user();
             if ($request->include ?? null) {
                 $includes = $this->includeStrToArray($request->include);
             }
-            $perPage  = $request->per_page ?? 12;
             $products = Product::with($includes ?? [])->latest();
 
             $products = (new ProductFilter())->apply($products, $request)
-                ->paginate($perPage);
-            // if ($user ?? null && $user->isAdmin()) {
-            //     $products = $products->get();
-            // } else {
-            // }
+                ->paginate($request->per_page ?? 12);
 
             return [
-                // 'products' => ProductCollectionResource::collection($products),
                 'products' => $products,
             ];
         },  __('messages.actions.retrieved_success', ['resource' => $this->resources($this->key)]));
@@ -53,7 +45,7 @@ class ProductController extends ApiController
             $products = Product::onlyTrashed()
                 ->orderByDesc('deleted_at')
                 ->with($includes ?? [])
-                ->get();
+                ->paginate($request->per_page ?? 12);
 
             return [
                 'products' => $products,
@@ -73,7 +65,7 @@ class ProductController extends ApiController
             foreach (['before', 'after'] as $position) {
                 if (($position_counts[$position] ?? 0) !== 1) {
                     throw ValidationException::withMessages(
-                        ['positions' => __('validation.only_one_position', ['attribute' => $position])]
+                        ['positions' => __('validation.only_one_position', ['attribute' => __('validation.attributes.' . $position)])]
                     );
                 }
             }

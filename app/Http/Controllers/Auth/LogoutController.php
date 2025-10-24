@@ -20,7 +20,6 @@ class LogoutController extends ApiController
                 $user->tokens()->delete();
             } else {
                 $user->tokens()?->where('name', $user->currentAccessToken()?->name)->delete();
-                // $user->currentAccessToken()->delete();
             }
             return [];
         },  __('messages.logout_success'));

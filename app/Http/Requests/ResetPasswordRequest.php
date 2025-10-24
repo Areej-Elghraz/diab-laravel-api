@@ -20,7 +20,6 @@ class ResetPasswordRequest extends FormRequest
     {
         return [
             'input'        => 'required|string',
-            'otp'          => 'required|string|size:6',
             'new_password' => 'required|string|min:6|confirmed',
         ];
     }

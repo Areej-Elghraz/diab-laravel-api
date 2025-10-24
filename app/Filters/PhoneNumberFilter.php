@@ -15,11 +15,6 @@ class PhoneNumberFilter
       $type = $this->includeStrToArray($request->type);
       $query->whereJsonContains('type', $type);
     }
-    return $query
-      // [
-      //   'query' => $query,
-      //   'type' => $type ?? null,
-      // ]
-    ;
+    return $query;
   }
 }

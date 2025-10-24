@@ -33,7 +33,7 @@ return Application::configure(basePath: dirname(__DIR__))
                 }
 
                 return response()->json([
-                    'message' => __('messages.404_not_found', ['model' => 'Resource']),
+                    'message' => __('messages.404_not_found', ['model' => __('messages.resources.resource.singular')]),
                 ], 404);
             }
         });
@@ -85,7 +85,6 @@ return Application::configure(basePath: dirname(__DIR__))
             if ($request->expectsJson()) {
                 return response()->json([
                     'message' => __('messages.database_error'),
-                    // 'error' => config('app.debug') ? $e->getMessage() : null,
                 ], 500);
             }
         });
@@ -102,7 +101,6 @@ return Application::configure(basePath: dirname(__DIR__))
         //     if ($request->expectsJson()) {
         //         return response()->json([
         //             'message' => __('messages.internal_server_error'),
-        //             // 'error' => config('app.debug') ? $e->getMessage() : null,
         //         ], 500);
         //     }
         // });
@@ -119,8 +117,7 @@ return Application::configure(basePath: dirname(__DIR__))
             if ($request->expectsJson()) {
                 return response()->json([
                     'message' => __('messages.external_api_error'),
-                    // 'error' => config('app.debug') ? $e->getMessage() : null,
-                ], 502); // Bad Gateway
+                ], 502);
             }
         });
 

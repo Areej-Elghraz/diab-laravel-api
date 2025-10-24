@@ -3,7 +3,6 @@
 namespace App\Traits;
 
 use DateTimeInterface;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 
 trait LocalTimestamps
 {
